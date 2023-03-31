@@ -21,13 +21,13 @@ function [image_features,image_Jacobian] = take_picture_perspective(W_T_c,points
 % Andrew 2021
 
 %% Focal and pixel dimensions Parameters:
-f = 0.015; 
-pu =10*10^-6; pv = pu; %Pixel Size
+%f = 0.015; 
+%pu =10*10^-6; pv = pu; %Pixel Size
 uo = 0; vo = 0; %Principal point
 
-% pu = 0.9/384;
-% pv = pu;
-% f = 252.5 * pu;
+pu = 0.9/384; %Pixel Size
+pv = pu;
+f = 252.5 * pu;
 % uo = 207.3;
 % vo = 205.65;
 
