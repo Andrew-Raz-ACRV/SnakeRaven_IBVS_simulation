@@ -179,7 +179,7 @@ classdef SnakeRaven
         %% Update only in Inverse Kinematics
         function obj = IK_update(obj,target_pose)
                 %Controller Speed:
-                dx_limit = 0.2; %mm/iteration
+                dx_limit = 0.2; %mm/iteration 0.2
                 %Input mj to joint angles
                 obj.q = motor2joint(obj.mj,obj.design,obj.calibration);
                 %Compute Forward Kinematics
