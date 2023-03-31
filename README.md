@@ -6,8 +6,10 @@ The main simulator is run using the command:
 SnakeRaven_VisualServo_simulator
 '''
 It utilises the functions in IBVS_demo, Math_functions, Plotting_functions and SnakeRaven_kinematics.
+
 It can run either the IBVS orientation partitioned or Visual Predictive Control algorithms as mentioned in the chapter in my [thesis](https://eprints.qut.edu.au/235042/)
-Noe: the Visual Predictive Controller requires the Optimization Toolbox
+
+Note: the Visual Predictive Controller requires the Optimization Toolbox
 
 Example output:
 
