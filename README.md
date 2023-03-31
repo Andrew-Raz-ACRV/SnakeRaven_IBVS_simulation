@@ -18,6 +18,6 @@ Example output:
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation/blob/main/ibvser.png)
 ![alt text](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation/blob/main/ibvsv.png)
 
-There is also code for processing validation data results which is executed by [IBVS_result_processor](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation/tree/main/IBVS_result_processing) and requires the Robotics toolbox and Signal Processing toolbox.
+There is also code for processing validation data results which is executed by [IBVS_results_processor](https://github.com/Andrew-Raz-ACRV/SnakeRaven_IBVS_simulation/tree/main/IBVS_result_processing) and requires the Robotics toolbox and Signal Processing toolbox.
 
 It also includes a variety of additional code for testing hand-eye calibration which may need Peter Corke's Robotic toolbox for MATLAB: https://github.com/petercorke/robotics-toolbox-matlab
