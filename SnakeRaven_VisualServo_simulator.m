@@ -45,11 +45,33 @@ center = [0,0]; %[width/2,width/2];
 %Setup SnakeRaven
 S = SnakeRaven;
 
+%number of features
+ff = 4;
+
 %3D position [x y z] the four target dots in T frame:
-target_points = [ 1, 1, 0;
-                 -1, 1, 0;
-                 -1,-1, 0;
-                  1,-1, 0];
+switch ff
+    case 4
+        target_points = [ 1, 1, 0;
+                     -1, 1, 0;
+                     -1,-1, 0;
+                      1,-1, 0];
+    case 3
+        target_points = [ 0, 1, 0;
+                     -1,-1, 0;
+                      1,-1, 0];
+    case 2
+        target_points = [ 0, 1, 0;
+                       0,-1, 0];
+    case 1
+        target_points = [ 0, 0, 0];
+        region_radius = 0;
+    otherwise
+        target_points = [ 1, 1, 0;
+                     -1, 1, 0;
+                     -1,-1, 0;
+                      1,-1, 0];
+end
+
 Tg = S.Tend; 
 %T = S.Tend * txyz(0,0,3) * [Rx(0.2)*Ry(0.2) [5 0 0]'; 0 0 0 1];
 T = S.Tend * txyz(0,0,3) * [Rx(0)*Ry(0) [0 0 0]'; 0 0 0 1];
@@ -96,8 +118,12 @@ for ii = 1:iterations
     plotcircle(center(1),center(2),region_radius);
 
     %Feature Correspondance:
-    p = [image_features(1,:)'; image_features(2,:)';
-         image_features(3,:)'; image_features(4,:)'];
+    nn = size(image_features,1);
+    p = zeros(nn*2,1);
+    for jj=1:size(image_features,1)
+        p(2*jj-1) = image_features(jj,1);
+        p(2*jj) = image_features(jj,2);
+    end
  
 %     %Pixel noise
 %     noise = 10*randn(length(p),1);
@@ -120,7 +146,7 @@ for ii = 1:iterations
     
         %Control Law for IBVS
         if(translation_feed)
-            Lambda = 1.5;
+            Lambda = 1;
             dw = pinv(Jp(:,4:6))*(Lambda*error-Jp(:,1:3)*v_c(:,ii));
         else
             Lambda = 10;
@@ -236,7 +262,7 @@ hold on
 plotcircle(center(1),center(2),region_radius);
 hold on
 plot(desired_image_points(:,1),desired_image_points(:,2),'b-','HandleVisibility','off')
-for ii=1:2:8
+for ii=1:2:2*nn
     hold on
     plot(feat_traj(ii,1:iterations),feat_traj(ii+1,1:iterations),'g--')
     hold on
@@ -278,5 +304,3 @@ ylabel('Camera Velocity [mm/s] or [rad/s]')
 legend('v_x','v_y','v_z','\omega_x','\omega_y','\omega_z');
 f4.Position(3) = 300;
 f4.Position(4) = 300;
-
-%f.Position(3:4) = [1700 300];
