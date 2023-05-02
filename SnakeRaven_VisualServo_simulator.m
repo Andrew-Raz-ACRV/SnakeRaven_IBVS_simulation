@@ -15,7 +15,7 @@ addpath('SnakeRaven_kinematics')
 
 %% Settings:
 IBVSOP_algorithm = true; %activates IBVS OP if true, VPC for false
-translation_feed = true; %activates knowledge of teleop command
+translation_feed = false; %activates knowledge of teleop command
 
 %% Teleoperation Task
 
@@ -291,16 +291,19 @@ xlabel('Time [s]')
 ylabel('Error [Pixels]')
 switch ff
     case 4
-        lgd = legend('e_1x','e_1y','e_2x','e_2y','e_3x','e_3y','e_4x','e_4y','Location','southeast'); lgd.NumColumns = 2;
+        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','e_{4x}','e_{4y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 4;
     case 3
-        lgd = legend('e_1x','e_1y','e_2x','e_2y','e_3x','e_3y','Location','southeast'); lgd.NumColumns = 2;
+        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 4;
     case 2
-        lgd = legend('e_1x','e_1y','e_2x','e_2y','Location','southeast'); lgd.NumColumns = 2;
+        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 4;
     case 1
-        lgd = legend('e_1x','e_1y','Location','southeast'); lgd.NumColumns = 2;
+        lgd = legend('e_{1x}','e_{1y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 2;
 end
 f3.Position(3) = 300;
 f3.Position(4) = 300;
+%lgd.Position(1) = 300/2 - lgd.Position(3)/2;
+%lgd.Position(2) = 300/2 - lgd.Position(4)/2;
+
 
 %Input Figure
 f4 = figure;
@@ -310,7 +313,7 @@ f4 = figure;
 plot(dT*(1:iterations),vc_traj)
 title('Camera Velocity over Time')
 xlabel('Time [s]')
-ylabel('Camera Velocity [mm/s] or [rad/s]')
-legend('v_x','v_y','v_z','\omega_x','\omega_y','\omega_z');
+lgd2 = legend('v_x','v_y','v_z','\omega_x','\omega_y','\omega_z','Location','north','Orientation','horizontal'); lgd2.NumColumns = 3;
 f4.Position(3) = 300;
 f4.Position(4) = 300;
+ylabel('Camera Velocity [mm/s] or [rad/s]')
