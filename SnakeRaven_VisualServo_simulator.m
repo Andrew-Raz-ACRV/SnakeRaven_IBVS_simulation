@@ -146,7 +146,7 @@ for ii = 1:iterations
     
         %Control Law for IBVS
         if(translation_feed)
-            Lambda = 1;
+            Lambda = 1.5;
             dw = pinv(Jp(:,4:6))*(Lambda*error-Jp(:,1:3)*v_c(:,ii));
         else
             Lambda = 10;
@@ -289,6 +289,16 @@ plot(dT*(1:iterations),error_traj)
 title('Feature Error over Time')
 xlabel('Time [s]')
 ylabel('Error [Pixels]')
+switch ff
+    case 4
+        lgd = legend('e_1x','e_1y','e_2x','e_2y','e_3x','e_3y','e_4x','e_4y','Location','southeast'); lgd.NumColumns = 2;
+    case 3
+        lgd = legend('e_1x','e_1y','e_2x','e_2y','e_3x','e_3y','Location','southeast'); lgd.NumColumns = 2;
+    case 2
+        lgd = legend('e_1x','e_1y','e_2x','e_2y','Location','southeast'); lgd.NumColumns = 2;
+    case 1
+        lgd = legend('e_1x','e_1y','Location','southeast'); lgd.NumColumns = 2;
+end
 f3.Position(3) = 300;
 f3.Position(4) = 300;
 
