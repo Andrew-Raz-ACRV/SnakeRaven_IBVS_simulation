@@ -60,10 +60,23 @@ end
 
 %% Plot Feature Tracker error over time:
 f2 = figure(2); 
-plot(feature_error.Error(:,2:21))
+leg = false;
+if(leg)
+    plot(feature_error.Error(250:350,2:21))
+else
+    plot(feature_error.Error(:,2:21))
+end
 title('Feature error over time')
 xlabel('Iterations')
 ylabel('Feature error [mm]')
+axis([0 inf -0.4 0.4]);
+if(leg)
+    lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','e_{4x}','e_{4y}',...
+    'e_{5x}','e_{5y}','e_{6x}','e_{6y}','e_{7x}','e_{7y}','e_{8x}','e_{8y}',...
+    'e_{9x}','e_{9y}','e_{10x}','e_{10y}',...
+    'Location','eastoutside','Orientation','horizontal'); 
+    lgd.NumColumns = 2;
+end
 f2.Position(3) = 300;
 f2.Position(4) = 300;
 
