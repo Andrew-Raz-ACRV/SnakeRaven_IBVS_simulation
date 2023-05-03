@@ -14,8 +14,8 @@ addpath('Plotting_functions')
 addpath('SnakeRaven_kinematics')
 
 %% Settings:
-IBVSOP_algorithm = true; %activates IBVS OP if true, VPC for false
-translation_feed = false; %activates knowledge of teleop command
+IBVSOP_algorithm = 1; %activates IBVS OP if true, VPC for false
+translation_feed = 1; %activates knowledge of teleop command
 
 %% Teleoperation Task
 
@@ -289,15 +289,16 @@ plot(dT*(1:iterations),error_traj)
 title('Feature Error over Time')
 xlabel('Time [s]')
 ylabel('Error [Pixels]')
+axis([0 5.5 -40 40])
 switch ff
     case 4
-        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','e_{4x}','e_{4y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 4;
+        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','e_{4x}','e_{4y}','Location','east','Orientation','horizontal'); lgd.NumColumns = 1;
     case 3
-        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 4;
+        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','e_{3x}','e_{3y}','Location','east','Orientation','horizontal'); lgd.NumColumns = 1;
     case 2
-        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 4;
+        lgd = legend('e_{1x}','e_{1y}','e_{2x}','e_{2y}','Location','east','Orientation','horizontal'); lgd.NumColumns = 1;
     case 1
-        lgd = legend('e_{1x}','e_{1y}','Location','southoutside','Orientation','horizontal'); lgd.NumColumns = 2;
+        lgd = legend('e_{1x}','e_{1y}','Location','east','Orientation','horizontal'); lgd.NumColumns = 1;
 end
 f3.Position(3) = 300;
 f3.Position(4) = 300;
@@ -313,7 +314,9 @@ f4 = figure;
 plot(dT*(1:iterations),vc_traj)
 title('Camera Velocity over Time')
 xlabel('Time [s]')
-lgd2 = legend('v_x','v_y','v_z','\omega_x','\omega_y','\omega_z','Location','north','Orientation','horizontal'); lgd2.NumColumns = 3;
+ylabel('Camera Velocity [mm/s] or [rad/s]')
+axis([0 5.5 -2 3])
+%lgd2 = legend('v_x','v_y','v_z','\omega_x','\omega_y','\omega_z','Location','north','Orientation','horizontal'); lgd2.NumColumns = 3;
+lgd2 = legend('v_x','v_y','v_z','\omega_x','\omega_y','\omega_z','Location','east','Orientation','horizontal'); lgd2.NumColumns = 1;
 f4.Position(3) = 300;
 f4.Position(4) = 300;
-ylabel('Camera Velocity [mm/s] or [rad/s]')
